@@ -1,30 +1,33 @@
-import { StatusBar } from 'expo-status-bar';
-import { NavigationContainer } from "@react-navigation/native";
-import { NativeStackNavigationOptions, createNativeStackNavigator } from "@react-navigation/native-stack";
-import { HomeScreen } from './screens/Home';
-import { LoginScreen } from './screens/Login';
+import {ClerkProvider} from "@clerk/clerk-expo";
+import {StatusBar} from 'expo-status-bar'
+import Constants from "expo-constants"
+import * as SecureStore from 'expo-secure-store'
+import AppNavigation from './navigations/app-navigations'
 
-const Stack = createNativeStackNavigator();
+const tokenCache = {
+  async getToken(key: string) {
+    try {
+      return SecureStore.getItemAsync(key)
+    } catch(err) {
+      return null
+    }
+  },
+
+  async saveToken(key: string, value: string) {
+    try {
+      return SecureStore.setItemAsync(key, value)
+    } catch (err) {
+      return;
+    }
+  },
+}
+
 
 export default function App() {
-  const options = {
-    headerStyle: {
-      backgroundColor: '#EF9E3F',
-    },
-    headerTintColor: '#fff',
-    headerTitleAlign: 'center',
-    title: 'Ingredient Scanner'
-  } satisfies NativeStackNavigationOptions
-
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Login" component={LoginScreen} 
-        options={options} />
-        <Stack.Screen name="Home" component={HomeScreen} 
-        options={options} />
-      </Stack.Navigator>
+    <ClerkProvider tokenCache={tokenCache} publishableKey={Constants.expoConfig.extra.clerkPublishableKey}>
+      <AppNavigation />
       <StatusBar style="auto" />
-    </NavigationContainer>
+      </ClerkProvider>
   );
 }

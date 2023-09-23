@@ -42,6 +42,13 @@ const styles = StyleSheet.create({
         marginTop: 8,
         marginBottom: 8,
         fontSize: 18
+    },
+    footnote: {
+        color: '#A4A4A4',
+        marginTop: 6
+    },
+    textfield: {
+        marginVertical: 4
     }
 });
 
