@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@clerk/clerk-expo": "^0.19.3",
+    "@gluestack-style/react": "^0.2.51",
+    "@gluestack-ui/themed": "^0.1.51",
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/native-stack": "^6.9.13",
     "@types/react": "~18.2.14",

@@ -8,6 +8,8 @@ import { LoginScreen } from '../screens/Login'
 import { MD3LightTheme as DefaultTheme } from 'react-native-paper';
 import { createMaterialBottomTabNavigator } from 'react-native-paper/react-navigation';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { GluestackUIProvider, config } from "@gluestack-ui/themed"
+import {SafeAreaView} from "react-native";
 
 const theme = {
     ...DefaultTheme,
@@ -30,11 +32,12 @@ export default function AppNavigation() {
         },
         headerTintColor: '#fff',
         headerTitleAlign: 'center',
-        title: 'Ingredient Scanner'
+        title: 'Ingredient Scanner',
     } satisfies NativeStackNavigationOptions;
     
     return (
         <>
+        <GluestackUIProvider config={config.theme}>
         <PaperProvider theme={theme}>
         <NavigationContainer theme={theme}>
             
@@ -65,6 +68,7 @@ export default function AppNavigation() {
             <Notifications />
         </NavigationContainer>
             </PaperProvider>
+        </GluestackUIProvider>
         </>
     )
 }
