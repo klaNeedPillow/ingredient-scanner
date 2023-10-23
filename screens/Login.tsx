@@ -45,12 +45,12 @@ export const LoginScreen = ({ navigation }) => {
     }
   };
 
-  return (
+    return (
     <View className='gap-y-2 flex justify-center mx-4 h-screen' style={{
       paddingLeft: insets.left,
       paddingRight: insets.right,
     }}>
-      <View className='flex h-[32vh] mb-4'>
+      <View className='flex mb-4 h-[8vh]'>
         <Image
           className='flex h-full'
           source="https://picsum.photos/seed/696/3000/2000"
